@@ -1,0 +1,31 @@
+<div *ngFor="let item of posts; let i=index">
+    <!-- PUBLICACIONES -->
+    <div class="card my-3">
+        <div class="card-header" *ngIf="users">
+            <h3><a class="font-weight-bold text-primary" (click)="verPerfil(item.userId)">
+                {{ users[item.userId-1].username }}
+        </a> </h3><small class="text-monospace"> - {{ users[item.userId-1].email }}</small>
+        </div>
+        <div class="card-body">
+            <h5 class="card-title text-center">{{ item.title }}</h5>
+            <p class="card-text text-center text-muted">{{ item.body }}</p>
+            <div class="text-center">
+                <button class="btn btn-outline-primary btn-sm " type="button" data-toggle="collapse" [attr.data-target]="'#item' + item.id" aria-expanded="false" aria-controls="collapseExample">
+          Comments
+        </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- COMENTARIOS -->
+
+    <div class="collapse" id="item{{item.id}}">
+        <div *ngFor="let coments of coments[i]; let j=index">
+            <div class="card" style="border: none;">
+                <div class="card-body">
+                    <h5 class="card-title">{{coments.name}} <small class="text-info text-monospace"> - {{coments.email}}</small> </h5>
+                    <p class="card-text text-muted">{{coments.body}}</p>
+                </div>
+            </div>
+        </div>
+    </div>

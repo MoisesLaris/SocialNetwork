@@ -1,0 +1,30 @@
+<div class="jumbotron bg-dark text-white">
+    <h1 class="display-4" *ngIf="perfil">{{ perfil[id-1].username}} <small style="font-size: 30px;"> - {{perfil[id-1].name}}</small></h1>
+    <p class="lead" *ngIf="perfil">{{perfil[id-1].email}} <br> <span style="font-size: 16px;" *ngIf="perfil"> street: {{perfil[id-1].address.street}}<br>city: {{perfil[id-1].address.city}} <br>zipcode: {{perfil[id-1].address.zipcode}}<br>phone: {{perfil[id-1].phone}}<br></span></p>
+    <hr class="my-4">
+    <p>Web site: <a class="text-primary" *ngIf="perfil">{{perfil[id-1].website}}</a></p>
+
+</div>
+<h1 class="display-5">Posts</h1>
+<div class="card my-3" *ngFor="let item of publicaciones; let i=index">
+
+    <div class="card-body">
+        <h5 class="card-title text-center">{{ item.title }}</h5>
+        <p class="card-text text-center text-muted">{{ item.body }}</p>
+        <div class="text-center">
+            <button class="btn btn-outline-primary btn-sm" type="button" data-toggle="collapse" [attr.data-target]="'#item' + item.id" aria-expanded="false" aria-controls="collapseExample">
+          Comments
+        </button>
+        </div>
+    </div>
+    <div class="collapse" id="item{{item.id}}">
+        <div *ngFor="let coments of coments[i]; let j=index">
+            <div class="card" style="border: none;">
+                <div class="card-body">
+                    <h5 class="card-title">{{coments.name}} <small class="text-info text-monospace"> - {{coments.email}}</small> </h5>
+                    <p class="card-text text-muted">{{coments.body}}</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,1 +1,9 @@
 /* You can add global styles to this file, and also import other style files */
+
+m-top {
+    margin-top: 50px;
+}
+
+h3 {
+    display: inline;
+}
